@@ -1,0 +1,140 @@
+body, ul, li, ol, p, dl, dd, h1, h2, h3, h4, h5, h6, img, iframe, form, div {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 0;
+}
+html{
+    font-family: "SimSun";
+    font-size: 14px;
+}
+.container{
+    width: 100%;
+}
+.product_head{
+    height: 35px;
+    margin-left: 15px;
+    padding-left: 35px;
+    font-size: 18px;
+    background: url(http://img3.ddimg.cn/00363/book2/fenl_bg.png) 7px 7px no-repeat;
+    line-height: 34px;
+    color: #863e18;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+.product{
+    height: 630px;
+    margin: 0 auto;
+    width: 1015px;
+}
+.product_head li{
+    float: left;
+    padding: 0 9px;
+    color: #666;
+    background: none;
+}
+.product_title{
+    float: left;
+}
+.product_cart{
+    float: right;
+    margin-right: 66px;
+    padding-left: 40px;
+    width: 90px;
+    color: #ffffff;
+    border-color: #ff2832;
+    background: url(http://img62.ddimg.cn/upload_img/00459/home/icon_cart.png) 5px 0 no-repeat #ff2832;
+    cursor: pointer;
+}
+.product_ul{
+    padding: 20px 15px;
+    overflow: hidden;
+}
+.product_ul li{
+    float: left;
+    width: 150px;
+    margin-right: 47px;
+    margin-bottom: 16px;
+    height: 260px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    overflow: visible;
+}
+.product_ul li:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.26);
+}
+.product_ul a{
+    text-decoration: none;
+}
+.product_ul a.img{
+    width: 150px;
+    display: block;
+    height: 150px;
+}
+.name{
+    padding: 7px 20px 0;
+    height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+}
+.name a{
+    color: #000;
+    font-size: 12px;
+}
+.author{
+    padding: 0 20px;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    color: #aaa;
+}
+.price{
+    padding-left: 20px;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    font-size: 14px;
+}
+.price .rob{
+    color: #c30;
+    float: left;
+    overflow: hidden;
+    font-weight: bold;
+    margin-right: 12px;
+}
+.page{
+    margin-top: 15px;
+    text-align: center;
+}
+.page .local{
+    display: inline-block;
+    height: 34px;
+    vertical-align: text-bottom;
+    text-align: center;
+    padding: 0 18px;
+    line-height: 34px;
+}
+.last_page,.next_page{
+    display: inline-block;
+    height: 34px;
+    padding: 0 18px;
+    border: 1px solid #e1e2e3;
+    vertical-align: text-bottom;
+    text-align: center;
+    line-height: 34px;
+    text-decoration: none;
+    overflow: hidden;
+    margin-right: 9px;
+    background: #fff;
+}
+.footer{
+    text-align: center;
+    background: #f5f6f5;
+    border-top: 1px solid #ebebeb;
+    height: 42px;
+    line-height: 42px;
+    margin-top: 20px;
+    color: #333;
+}

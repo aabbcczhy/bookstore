@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>图书销售</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="product_container">
+        <div class="product">
+            <div class="product_head">
+                <div class="product_title">
+                    <a title="图书">图书</a>
+                </div>
+                <div class="product_cart">
+                    <span>
+                        <i class="icon_card"></i>购物车
+                        <b id="cart_items_count">0</b>
+                    </span>
+                </div>
+            </div>
+            <div class="product_list">
+                <ul class="product_ul">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <a class="last_page" href="javascript:void(0);">&lt; 上一页</a>
+        <span class="local">当前页：<span class="local_page">1</span></span>
+        <a class="next_page" href="javascript:void(0);">下一页 &gt;</a>
+    </div>
+</div>
+<div class="footer">
+    Copyright &copy; yangsanhe 2019 , All Rights Reserved.
+</div>
+<script>
+    var page = 1;
+    function getBookList(page){
+        $.ajax({
+            type:"POST",
+            url:"getBookList",
+            data:{
+                "page":page
+            },
+            dataType:"json",
+            success:function (res) {
+                $(".local_page").html(page);
+                if(res.length===0){
+                    alert("已经到达最后一页了！");
+                    return;
+                }
+                var ul = $(".product_ul");
+                ul.empty();
+                for(var i in res){
+                    ul.append('<li class="line"><a href="#" target="_blank"><img src='+res[i].bookurl+'></a>'+
+                        '<p class="name">'+'<a href="#" target="_blank">'+ res[i].bookname +'</a></p><p class="author">'+
+                        '<span class="author_t"></span>'+ res[i].author+'</p><p class="price"><span class="rob"><span class="sign">¥</span>'+
+                        '<span class="num">'+res[i].price+'</span></span></p></li>');
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        //请求第一页数据
+        getBookList(page);
+        //绑定分页事件
+        $(".last_page").on('click',function () {
+            if(page<=1){
+                alert("当前已是第一页");
+                return;
+            }
+            getBookList(--page);
+        });
+        $(".next_page").on('click',function () {
+            getBookList(++page);
+        });
+    })
+</script>
+</body>
+
+</html>

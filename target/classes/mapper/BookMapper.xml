@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangsanhe.bookstore.dao.BookMapper">
+  <resultMap id="BaseResultMap" type="com.yangsanhe.bookstore.bean.Book">
+    <id column="bookId" jdbcType="INTEGER" property="bookid" />
+    <result column="bookName" jdbcType="VARCHAR" property="bookname" />
+    <result column="bookDescription" jdbcType="VARCHAR" property="bookdescription" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="bookUrl" jdbcType="VARCHAR" property="bookurl" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bookId, bookName, bookDescription, author, bookUrl, publisher, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </select>
+  <select id="getBookListByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from book
+    limit #{page,jdbcType=INTEGER},10
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yangsanhe.bookstore.bean.Book">
+    insert into book (bookId, bookName, bookDescription, 
+      author, bookUrl, publisher, 
+      price)
+    values (#{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{bookdescription,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{bookurl,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yangsanhe.bookstore.bean.Book">
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookid != null">
+        bookId,
+      </if>
+      <if test="bookname != null">
+        bookName,
+      </if>
+      <if test="bookdescription != null">
+        bookDescription,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="bookurl != null">
+        bookUrl,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookid != null">
+        #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="bookname != null">
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookdescription != null">
+        #{bookdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="bookurl != null">
+        #{bookurl,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yangsanhe.bookstore.bean.Book">
+    update book
+    <set>
+      <if test="bookname != null">
+        bookName = #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookdescription != null">
+        bookDescription = #{bookdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="bookurl != null">
+        bookUrl = #{bookurl,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yangsanhe.bookstore.bean.Book">
+    update book
+    set bookName = #{bookname,jdbcType=VARCHAR},
+      bookDescription = #{bookdescription,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      bookUrl = #{bookurl,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL}
+    where bookId = #{bookid,jdbcType=INTEGER}
+  </update>
+</mapper>

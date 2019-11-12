@@ -1,0 +1,21 @@
+server:
+  port: 8080
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+spring:
+  devtools:
+    restart:
+      enabled: true #开启热部署
+  datasource:
+    url: jdbc:mysql://localhost:3306/bookstore?useSSL=false&charsetEncoding=utf8&verifyServerCertificate=false
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  thymeleaf:
+    cache: false #关闭缓存
