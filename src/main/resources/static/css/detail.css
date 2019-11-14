@@ -1,0 +1,208 @@
+body, ul, li, ol, p, dl, dd, h1, h2, h3, h4, h5, h6, img, iframe, form, div {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 0;
+}
+.product_main{
+    width: 980px;
+    margin: 100px auto;
+}
+.product_main .pic_info {
+    float: left;
+    padding: 0 20px 30px 0;
+}
+.product_main .pic_info .pic {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 7777;
+}
+.product_main .pic_info .pic .img, .product_main .pic_info .pic .img img {
+    display: block;
+    width: 320px;
+    height: 320px;
+    overflow: hidden;
+}
+.product_main a{
+    text-decoration: none;
+}
+.product_main .show_info {
+    float: left;
+    font: 12px "Verdana","Simsun";
+    color: #646464;
+}
+.product_main .sale_box {
+    line-height: 24px;
+    padding: 0 0 0 10px;
+    margin-top: 5px;
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+.product_main .sale_box .sale_box_left {
+    width: 630px;
+    float: left;
+}
+.product_main .name_info {
+    font-family: "Verdana","Microsoft Yahei";
+    font-weight: normal;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0 6px 12px 0;
+}
+.product_main .name_info h1 {
+    line-height: 24px;
+    max-height: 48px;
+    overflow: hidden;
+    color: #323232;
+    font-size: 18px;
+    margin: 0 auto;
+}
+.product_main .name_info h1 .icon_name {
+    position: relative;
+    top: 2px;
+    display: inline;
+}
+.product_main .name_info h2 {
+    padding-top: 6px;
+    max-height: 96px;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 24px;
+}
+.product_main .name_info .head_title_name {
+    color: #323232;
+}
+.product_main .sale_box .messbox_info .t1 {
+    display: inline-block;
+    padding-right: 25px;
+}
+.product_main .show_info a, .product_main .show_info a:hover {
+    color: #1a66b3;
+}
+.product_main .sale_box .price_info {
+    background-color: #fcfaf7;
+    padding: 0 0 0 10px;
+    margin: 6px 0 0 -10px;
+    line-height: 24px;
+    position: relative;
+    width: 630px;
+    z-index: 6666;
+}
+.price_info .price_pc {
+    float: left;
+    padding-bottom: 0;
+}
+.price_info .price_pc .price_d {
+    font-size: 26px;
+    color: #e52222;
+    float: left;
+    overflow: hidden;
+    padding: 9px 5px 0 0;
+}
+.price_info .price_pc .price_d .yen {
+    font-size: 14px;
+}
+.price_info .yen {
+    font: 12px verdana;
+}
+.product_main .sale_box .buy_box {
+    padding: 30px 0 35px;
+}
+.product_main .sale_box .buy_box .num {
+    float: left;
+    height: 34px;
+    border: 1px solid #e9e9e9;
+    width: 38px;
+    padding-right: 23px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+.product_main .sale_box .buy_box .num input {
+    width: 38px!important;
+    height: 32px;
+    line-height: 32px;
+    border: 0;
+    background: #fff;
+    text-align: center;
+}
+.product_main .sale_box .buy_box .text {
+    color: #969696;
+    clear: both;
+    line-height: 20px;
+    width: 630px;
+    overflow: hidden;
+}
+.product_main .sale_box .buy_box .num .num_add {
+    background-position: -37px 0;
+    top: 0;
+}
+.product_main .sale_box .buy_box .num a, .product_main .sale_box .buy_box .num a:hover {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 23px;
+    height: 17px;
+    background-image: url(../images/product_sprites.png);
+    background-repeat: no-repeat;
+    background-color: #646464;
+    margin-left: 6px;
+}
+.product_main .show_info a, .product_main .show_info a:hover {
+    color: #1a66b3;
+}
+.product_main .sale_box .buy_box .num .num_disabled, .product_main .sale_box .buy_box .num .num_disabled:hover {
+    background-color: #ccc;
+    cursor: default;
+}
+.product_main .sale_box .buy_box .num .num_del {
+    background-position: -37px -17px;
+    top: 17px;
+}
+.product_main .sale_box .buy_box .buy_box_btn {
+    float: left;
+    width: 567px;
+}
+.product_main .buy_box_btn a.btn, .product_main .buy_box_btn a.btn:hover, .product_content .group_buy .group_info a.btn, .product_content .group_buy .group_info a.btn:hover, .tab_panel_btn .btn, .tab_panel_btn .btn:hover {
+    height: 36px;
+    font: 16px/36px "Microsoft Yahei";
+    overflow: hidden;
+    margin: 0 0 3px 10px;
+    float: left;
+    padding: 0 15px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #fff;
+}
+a.btn_red {
+    background-color: #ff2832;
+}
+.btn i.cart {
+    float: left;
+    width: 20px;
+    height: 19px;
+    background: url(../images/product_sprites.png) no-repeat -40px -35px;
+    margin: 9px 4px 0 0;
+}
+.product_wrapper i {
+    font-style: normal;
+}
+.product_main .buy_box_btn a.btn_b, .product_main .buy_box_btn a.btn_b:hover {
+    height: 34px;
+    line-height: 34px;
+}
+a.btn_b_red, a.btn_b_red:hover {
+    border: 1px solid #ff2832;
+    color: #ff2832!important;
+    background-color: #ffedee;
+}

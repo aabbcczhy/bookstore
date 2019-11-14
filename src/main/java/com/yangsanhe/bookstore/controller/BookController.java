@@ -4,6 +4,7 @@ import com.yangsanhe.bookstore.bean.Book;
 import com.yangsanhe.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class BookController {
     }
 
     @RequestMapping("/addToCart/{bookid}")
+    @ResponseBody
     public void addToCart(@PathVariable Integer bookid){
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         List<Book> bookList = (List<Book>) request.getSession().getAttribute("cart");
@@ -48,6 +50,8 @@ public class BookController {
         request.getSession().setAttribute("cart",bookList);
     }
 
+    @RequestMapping("/getCart")
+    @ResponseBody
     public List<Book> getCartList(HttpSession session){
         return (List<Book>) session.getAttribute("cart");
     }
@@ -61,6 +65,18 @@ public class BookController {
             request.getSession().setAttribute("cart",bookList);
         }
         return "book";
+    }
+
+    @RequestMapping("/bookdetails/{bookid}")
+    public String getBookDetail(@PathVariable Integer bookid, ModelMap modelMap){
+        Book book = bookService.getBookById(bookid);
+        modelMap.addAttribute("book",book);
+        return "bookdetails";
+    }
+
+    @RequestMapping("/{resource}")
+    public String OtherPage(@PathVariable String resource){
+        return resource;
     }
 
 }
