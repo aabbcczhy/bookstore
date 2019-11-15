@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>图书销售</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/book.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-<div class="header">
-    <div class="logo">图书销售系统</div>
-    <div class="search">
-            <input type="text" placeholder="请输入你想搜索的图书..." class="search-input" id="search-input" autocomplete="off">
-            <input type="button" class="search-btn" onclick="javascript:void(0);">
-    </div>
-</div>
-
 <div class="container">
     <div class="product_container">
         <div class="product">
@@ -25,10 +15,7 @@
                     <a title="图书">图书</a>
                 </div>
                 <div class="product_cart">
-                    <a href="cart">
-                        <i class="icon_card"></i>购物车
-                        <b id="cart_items_count">0</b>
-                    </a>
+                    <a href="cart" style="display: block;">购物车</a>
                 </div>
             </div>
             <div class="product_list">
@@ -44,9 +31,9 @@
         <a class="next_page" href="javascript:void(0);">下一页 &gt;</a>
     </div>
 </div>
-<div class="footer">
-    Copyright &copy; yangsanhe 2019 , All Rights Reserved.
-</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/book.js"></script>
 </body>
 
 </html>

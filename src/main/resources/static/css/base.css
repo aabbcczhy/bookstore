@@ -1,0 +1,62 @@
+html,body,div,span,iframe,b,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,big,cite,code,em,font,img,q,s,samp,small,strike,strong,sub,sup,u,i,center,dl,dt,dd,ol,ul,li,form,label,table,tbody,tfoot,thead,tr,th,td {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    background:transparent;
+    list-style:none;
+}
+html{
+    font-family: "SimSun";
+    font-size: 14px;
+}
+.header{
+    background: #f5f6f5;
+    border-top: 1px solid #ebebeb;
+    height: 42px;
+    line-height: 42px;
+    overflow: hidden;
+    padding: 10px 0px;
+}
+.logo{
+    float: left;
+    margin-left: 18px;
+    color: #333;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    font-size: 23px;
+}
+.search{
+    width: 468px;
+    margin: 0 auto;
+}
+.search-input{
+    width: 398px;
+    height: 18px;
+    border: 2px solid #ff2832;
+    padding: 9px 0 9px 10px;
+    z-index: 2;
+    color: #323232;
+    font: 12px/18px 'Hiragino Sans GB',"simsun",Arial;
+    outline: 0;
+    vertical-align: middle;
+    background: none;
+}
+.search-btn{
+    width: 48px;
+    height: 40px;
+    border: none;
+    vertical-align: middle;
+    background: url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png) no-repeat 0 -346px;
+    cursor: pointer;
+}
+.footer{
+    text-align: center;
+    background: #f5f6f5;
+    border-top: 1px solid #ebebeb;
+    height: 42px;
+    line-height: 42px;
+    margin-top: 20px;
+    color: #333;
+}

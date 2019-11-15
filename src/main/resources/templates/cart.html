@@ -1,28 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>购物车</title>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/cart.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-    <table class="cart">
-        <thead>
-            <tr>
-                <td>bookId</td>
-                <td>bookName</td>
-                <td>bookDescription</td>
-                <td>author</td>
-                <td>publisher</td>
-                <td>price</td>
-            </tr>
-        </thead>
-        <tbody class="cart-list">
-            <tr class="cart-item">
-
-            </tr>
-        </tbody>
-    </table>
+    <div class="empty" id="empty" style="display: none">
+        <p>您的购物车还是空的，您可以：</p>
+        <a href="/book" class="btn">去逛逛</a>
+    </div>
+    <div class="cart-container">
+        <div class="w960" id="cart">
+            <ul class="shopping_title" id="j_carttitle">
+                <li class="f1">
+                    <a id="j_selectall" href="javascript:void(0)" class="checknow fn-checkall check_on">选中</a>
+                    全选
+                </li>
+                <li class="f2">商品信息</li>
+                <li class="f3">单价（元）</li>
+                <li class="f4">数量</li>
+                <li class="f4">金额（元）</li>
+                <li class="f5">操作</li>
+            </ul>
+            <div class="fn-shops" id="J_cartContent">
+                <div class="fn-shop">
+                    <div class="shopping_list">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                            <tbody th:each="key,book:${cart}">
+                            <tr class="bb_none tree_first ">
+                                <td class="row1">
+                                    <a href="javascript:void(0)" class="fn-product-check checknow check_on">选中</a>
+                                </td>
+                                <td class="row_img">
+                                    <a href="http://product.dangdang.com/28475555.html" target="_blank">
+                                        <img th:src="${book.current.value.bookurl}" width="80" height="80">
+                                    </a>
+                                </td>
+                                <td class="row_name">
+                                    <div class="name">
+                                        <a href="http://product.dangdang.com/28475555.html" target="_blank"
+                                           style="word-break:break-all;  word-wrap:break-word;" th:text="${book.current.value.bookname}"></a>
+                                    </div>
+                                </td>
+                                <td class="row3">
+                                    <span class="price_n" th:text="'¥'+${book.current.value.price}"></span>
+                                </td>
+                                <td class="fn-count-tip row3">
+                                    <span class="amount fn-updatecount" th:data="${book.current.value.bookid}">
+                                        <a href="javascript:void(0)" class="num_del">-</a>
+                                        <input th:value="${book.current.value.booknum}" type="text">
+                                        <a href="javascript:void(0)" class="num_add">+</a>
+                                    </span>
+                                </td>
+                                <td class="row4">
+                                    <span class="red item-total" th:text="'¥'+${book.current.value.price*book.current.value.booknum}"></span>
+                                </td>
+                                <td class="row5">
+                                    <span>
+                                        <a href="javascript:void(0);" th:data="${book.current.value.bookid}" class="fn-remove-product">删除</a>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="shoppingcart_loading" id="J_cartLoading" style="display: none;">
+                <img height="30" width="30" src="images/loading.gif">
+            </div>
+        </div>
+        <div style="position: static; bottom: -20px; z-index: 101; width: 100%; left: 0px;">
+            <div class="shopping_total" id="J_totalMoneyBlock">
+                <div class="shopping_total_right">
+                    <a class="total_btn fn-checkout" href="javascript:void(0);" id="checkout_btn">结&nbsp;&nbsp;算</a>
+                    <div class="subtotal">
+                        <p>
+                            <span class="cartsum">总计：</span>
+                            <span id="payAmount" class="price">¥122.51</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="shopping_total_left" id="J_leftBar">
+                    <a id="j_selectall2" href="javascript:void(0)" class="checknow fn-checkall check_on">选中</a>
+                    全选
+                    <a id="j_removeproducts" href="javascript:void(0)" class="fn-batch-remove">批量删除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.yangsanhe.bookstore.controller;
 
 import com.yangsanhe.bookstore.bean.Book;
+import com.yangsanhe.bookstore.bean.BookOnCart;
 import com.yangsanhe.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yangsanhe
@@ -40,30 +41,42 @@ public class BookController {
 
     @RequestMapping("/addToCart/{bookid}")
     @ResponseBody
-    public void addToCart(@PathVariable Integer bookid){
+    public void addToCart(@PathVariable Integer bookid,Integer booknum){
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-        List<Book> bookList = (List<Book>) request.getSession().getAttribute("cart");
-        Book book = bookService.getBookById(bookid);
-        if(book!=null){
-            bookList.add(book);
+        Map<Integer, BookOnCart> cart = (Map<Integer, BookOnCart>) request.getSession().getAttribute("cart");
+        BookOnCart bookFromCart = cart.get(bookid);
+        if(bookFromCart==null){
+            Book book = bookService.getBookById(bookid);
+            BookOnCart bookOnCart = this.convertFromBook(book,booknum);
+            cart.put(bookid,bookOnCart);
+        }else{
+            bookFromCart.setBooknum(bookFromCart.getBooknum()+booknum);
+            cart.put(bookid,bookFromCart);
         }
-        request.getSession().setAttribute("cart",bookList);
+        request.getSession().setAttribute("cart",cart);
     }
 
-    @RequestMapping("/getCart")
+    @PostMapping("/removeFromCart")
     @ResponseBody
-    public List<Book> getCartList(HttpSession session){
-        return (List<Book>) session.getAttribute("cart");
+    public String removeFromCart(Integer bookid){
+        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        Map<Integer, BookOnCart> cart = (Map<Integer, BookOnCart>) request.getSession().getAttribute("cart");
+        BookOnCart bookFromCart = cart.get(bookid);
+        if(bookFromCart!=null){
+            cart.remove(bookid);
+        }
+        return "success";
+    }
+
+    @RequestMapping("/cart")
+    public String getCartList(HttpSession session,ModelMap modelMap){
+        Map<Integer, BookOnCart> cart = (Map<Integer, BookOnCart>) session.getAttribute("cart");
+        modelMap.addAttribute("cart",cart);
+        return "cart";
     }
 
     @RequestMapping("/book")
     public String bookPage(){
-        //初始化购物车
-        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-        if(request.getSession().getAttribute("cart")==null){
-            List<Book> bookList = new ArrayList<>();
-            request.getSession().setAttribute("cart",bookList);
-        }
         return "book";
     }
 
@@ -74,9 +87,22 @@ public class BookController {
         return "bookdetails";
     }
 
-    @RequestMapping("/{resource}")
-    public String OtherPage(@PathVariable String resource){
-        return resource;
+    /**
+     * 将图书类转化为购物车中的图书类
+     * @param book 图书
+     * @param booknum 购买数量
+     * @return 购物车中的图书
+     */
+    private BookOnCart convertFromBook(Book book, Integer booknum){
+        if(book==null || booknum==null){
+            return null;
+        }
+        BookOnCart bookOnCart = new BookOnCart();
+        bookOnCart.setBookid(book.getBookid());
+        bookOnCart.setBookname(book.getBookname());
+        bookOnCart.setBookurl(book.getBookurl());
+        bookOnCart.setBooknum(booknum);
+        bookOnCart.setPrice(book.getPrice());
+        return bookOnCart;
     }
-
 }

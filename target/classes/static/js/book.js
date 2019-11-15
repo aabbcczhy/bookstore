@@ -24,15 +24,6 @@ function getBookList(page){
         }
     });
 }
-function addToCart(bookid){
-    $.ajax({
-        type:"POST",
-        url:"/addToCart/"+bookid,
-        success:function (res) {
-            alert("加入购物车成功！");
-        }
-    })
-}
 $(document).ready(function () {
     //请求第一页数据
     getBookList(page);

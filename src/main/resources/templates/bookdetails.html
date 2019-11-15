@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>图书详情</title>
-    <link rel="stylesheet" th:href="@{/css/detail.css}">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/detail.css">
 </head>
 
 <body>
     <div class="product_container">
         <div class="product_main clearfix">
+            <input id="bookid" type="hidden" th:value="${book.bookid}">
             <div class="pic_info">
                 <div class="pic" id="largePicDiv">
                     <a href="javascript:;" class="img">
@@ -21,9 +23,9 @@
                 <div class="sale_box clearfix">
                     <div class="sale_box_left" id="product_info" dd_name="b">
                         <div class="name_info">
-                            <h1 title="（图书名称）" th:text="${book.bookname}"></h1>
+                            <h1 th:text="${book.bookname}"></h1>
                             <h2>
-                                <span class="head_title_name" title="（图书介绍）" th:text="${book.bookdescription}"></span>
+                                <span class="head_title_name" th:text="${book.bookdescription}"></span>
                             </h2>
                         </div>
                         <div class="messbox_info">
@@ -54,7 +56,7 @@
                                 <!-- TODO 写js使得数量可以加减 -->
                             </div>
                             <div class="buy_box_btn">
-                                <a href="javascript:void(0);" id="part_buy_button" class="btn btn_red">
+                                <a href="javascript:void(0);" id="addToCartBtn" class="btn btn_red">
                                     <i class="cart"></i>
                                     加入购物车
                                 </a>
@@ -66,6 +68,46 @@
             </div>
         </div>
     </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        function addToCart(bookid,buyNum,isRedirect){
+            $.ajax({
+                type:"POST",
+                url:"/addToCart/" + bookid,
+                data:{
+                    booknum:buyNum
+                },
+                success:function (res) {
+                    if(!isRedirect){
+                        alert("加入购物车成功！");
+                    }
+                }
+            });
+        }
+        $("#num_add").on('click',function () {
+            let buyNum = $("#buy-num");
+            $("#num_del").removeClass("num_disabled");
+            buyNum.val(parseInt(buyNum.val())+1);
+        });
+        $("#num_del").on('click',function () {
+            let buyNum = $("#buy-num");
+            if(parseInt(buyNum.val())===1){
+                return;
+            }
+            buyNum.val(parseInt(buyNum.val())-1);
+            if(parseInt(buyNum.val())===1){
+                $(this).addClass("num_disabled");
+            }
+        });
+        $("#addToCartBtn").on('click',function () {
+            addToCart($("#bookid").val(),$("#buy-num").val());
+        });
+        $("#buy_now_button").on('click',function () {
+            addToCart($("#bookid").val(),$("#buy-num").val(),true);
+            window.location="/cart";
+        });
+    </script>
 </body>
 
 </html>
